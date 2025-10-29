@@ -5,16 +5,78 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         <title>FILIKR</title>
+        <style>
+            @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap");
+
+            body {
+                font-family: "JetBrains Mono", monospace;
+                background-color: #1a1b26;
+                color: #c0caf5;
+            }
+
+            .terminal-header {
+                background-color: #16161e;
+                border-top-left-radius: 8px;
+                border-top-right-radius: 8px;
+                padding: 8px 16px;
+            }
+
+            .terminal-button {
+                width: 12px;
+                height: 12px;
+                border-radius: 50%;
+                display: inline-block;
+                margin-right: 8px;
+            }
+
+            .terminal-body {
+                background-color: #1a1b26;
+                border-bottom-left-radius: 8px;
+                border-bottom-right-radius: 8px;
+                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
+            }
+
+            .ascii-art {
+                color: #7aa2f7;
+                line-height: 1.2;
+                font-size: 12px;
+            }
+
+            .label {
+                color: #7aa2f7;
+                font-weight: 600;
+            }
+
+            .value {
+                color: #c0caf5;
+            }
+
+            .separator {
+                color: #565f89;
+            }
+
+            .hard-skill {
+                color: #9ece6a;
+            }
+
+            .soft-skill {
+                color: #bb9af7;
+            }
+
+            .accent {
+                color: #f7768e;
+            }
+        </style>
     </head>
     <body>
         <!-- Шапка -->
-        <header class="bg-white text-gray-800 shadow-lg">
+        <header class="bg-[#16161e] text-[#c0caf5] shadow-lg">
             <nav class="container mx-auto px-4 py-3">
                 <div class="flex items-center justify-between">
                     <!-- Логотип и имя -->
                     <div class="flex items-center space-x-2">
                         <!-- Иконка -->
-                        <img src="./img/owl.png" alt="Logo" class="h-8 w-8" />
+                        <!--<img src="./img/owl.png" alt="Logo" class="h-8 w-8" />-->
                         <!-- Имя пользователя -->
                         <span class="text-xl font-bold">FILIkR</span>
                     </div>
@@ -104,8 +166,134 @@
         </header>
 
         <!-- Основной контент -->
-        <main class="container mx-auto px-4 py-8">
-            <h1 class="text-3xl font-bold mb-4">Добро пожаловать!</h1>
+        <main class="container mx-auto flex justify-center mt-10">
+            <div class="w-full">
+                <!-- Заголовок терминала -->
+                <div class="terminal-header flex justify-between items-center">
+                    <div class="flex">
+                        <div class="terminal-button bg-[#f7768e]"></div>
+                        <div class="terminal-button bg-[#e0af68]"></div>
+                        <div class="terminal-button bg-[#9ece6a]"></div>
+                    </div>
+                    <div class="text-sm text-gray-400">filikr@portfolio:~</div>
+                    <div class="w-12"></div>
+                    <!-- Пустой элемент для баланса -->
+                </div>
+
+                <!-- Тело терминала -->
+                <div class="terminal-body p-6 border border-[#292e42]">
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <!-- ASCII арт -->
+                        <div class="md:col-span-1 flex justify-center">
+                            <img
+                                src="./img/photo.jpg"
+                                alt="photo"
+                                class="max-w-128 w-full aspect-square object-cover"
+                            />
+                        </div>
+
+                        <!-- Информация -->
+                        <div class="md:col-span-2 space-y-3">
+                            <div class="flex">
+                                <span class="label w-32 flex-shrink-0"
+                                    >Пользователь</span
+                                >
+                                <span class="separator mr-2">:</span>
+                                <span class="value">FILIkR (Rodion)</span>
+                            </div>
+
+                            <div class="flex">
+                                <span class="label w-32 flex-shrink-0"
+                                    >Специальность</span
+                                >
+                                <span class="separator mr-2">:</span>
+                                <span class="value">Backend developer</span>
+                            </div>
+
+                            <div class="flex">
+                                <span class="label w-32 flex-shrink-0"
+                                    >Пол</span
+                                >
+                                <span class="separator mr-2">:</span>
+                                <span class="value">Мужской</span>
+                            </div>
+
+                            <div class="flex">
+                                <span class="label w-32 flex-shrink-0">ОС</span>
+                                <span class="separator mr-2">:</span>
+                                <span class="value">Filin Linux</span>
+                            </div>
+
+                            <div class="flex">
+                                <span class="label w-32 flex-shrink-0"
+                                    >Оболочка</span
+                                >
+                                <span class="separator mr-2">:</span>
+                                <span class="value">zsh</span>
+                            </div>
+
+                            <div class="flex">
+                                <span class="label w-32 flex-shrink-0"
+                                    >Редактор</span
+                                >
+                                <span class="separator mr-2">:</span>
+                                <span class="value">Zed</span>
+                            </div>
+
+                            <div class="mt-4">
+                                <div class="flex mb-2">
+                                    <span class="label w-32 flex-shrink-0"
+                                        >Хард-скиллы</span
+                                    >
+                                    <span class="separator mr-2">:</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 ml-36">
+                                    <span class="hard-skill">Golang</span>
+                                    <span class="hard-skill"
+                                        >Python|FastAPI</span
+                                    >
+                                    <span class="hard-skill">PostgreSQL</span>
+                                    <span class="hard-skill">Docker</span>
+                                    <span class="hard-skill">Git</span>
+                                    <span class="hard-skill">TelegramAPI</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-4">
+                                <div class="flex mb-2">
+                                    <span class="label w-32 flex-shrink-0"
+                                        >Софт-скиллы</span
+                                    >
+                                    <span class="separator mr-2">:</span>
+                                </div>
+                                <div class="grid grid-cols-2 gap-2 ml-36">
+                                    <span class="soft-skill">Коммуникация</span>
+                                    <span class="soft-skill"
+                                        >Решение проблем</span
+                                    >
+                                    <span class="soft-skill"
+                                        >Тайм-менеджмент</span
+                                    >
+                                    <span class="soft-skill"
+                                        >Работа в команде</span
+                                    >
+                                    <span class="soft-skill"
+                                        >Критическое мышление</span
+                                    >
+                                    <span class="soft-skill">Адаптивность</span>
+                                </div>
+                            </div>
+
+                            <div class="mt-6 pt-4 border-t border-[#292e42]">
+                                <div class="flex items-center">
+                                    <span class="accent mr-2">λ</span>
+                                    <span class="value">Добро пожаловать!</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </main>
 
         <script>

@@ -1,119 +1,48 @@
 <!doctype html>
-<html>
+<html lang="ru">
     <head>
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
         <title>FILIKR</title>
-        <style>
-            @import url("https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap");
-
-            body {
-                font-family: "JetBrains Mono", monospace;
-                background-color: #1a1b26;
-                color: #c0caf5;
-            }
-
-            .terminal-header {
-                background-color: #16161e;
-                border-top-left-radius: 8px;
-                border-top-right-radius: 8px;
-                padding: 8px 16px;
-            }
-
-            .terminal-button {
-                width: 12px;
-                height: 12px;
-                border-radius: 50%;
-                display: inline-block;
-                margin-right: 8px;
-            }
-
-            .terminal-body {
-                background-color: #1a1b26;
-                border-bottom-left-radius: 8px;
-                border-bottom-right-radius: 8px;
-                box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5);
-            }
-
-            .ascii-art {
-                color: #7aa2f7;
-                line-height: 1.2;
-                font-size: 12px;
-            }
-
-            .label {
-                color: #7aa2f7;
-                font-weight: 600;
-            }
-
-            .value {
-                color: #c0caf5;
-            }
-
-            .separator {
-                color: #565f89;
-            }
-
-            .hard-skill {
-                color: #9ece6a;
-            }
-
-            .soft-skill {
-                color: #bb9af7;
-            }
-
-            .accent {
-                color: #f7768e;
-            }
-        </style>
+        <link rel="stylesheet" href="sorce.css" />
     </head>
-    <body>
-        <!-- Шапка -->
-        <header class="bg-[#16161e] text-[#c0caf5] shadow-lg">
+    <body id="home" class="dark-theme transition-colors duration-300">
+        <!-- Шапка с фиксированной позицией -->
+        <header
+            class="fixed top-0 left-0 right-0 bg-header shadow-lg z-50 transition-colors duration-300"
+        >
             <nav class="container mx-auto px-4 py-3">
                 <div class="flex items-center justify-between">
-                    <!-- Логотип и имя -->
+                    <!-- Логотип -->
                     <div class="flex items-center space-x-2">
-                        <!-- Иконка -->
-                        <!--<img src="./img/owl.png" alt="Logo" class="h-8 w-8" />-->
-                        <!-- Имя пользователя -->
-                        <span class="text-xl font-bold">FILIkR</span>
+                        <span class="text-xl font-bold text-primary"
+                            >FILIkR</span
+                        >
                     </div>
 
-                    <!-- Десктопное меню -->
-                    <div class="hidden md:flex items-center space-x-6">
-                        <a
-                            href="#"
-                            class="hover:text-blue-400 transition duration-300"
-                            >Главная</a
-                        >
-                        <a
-                            href="#"
-                            class="hover:text-blue-400 transition duration-300"
-                            >Обо мне</a
-                        >
-                        <a
-                            href="#"
-                            class="hover:text-blue-400 transition duration-300"
-                            >Проекты</a
-                        >
-                        <a
-                            href="#"
-                            class="hover:text-blue-400 transition duration-300"
-                            >Блог</a
-                        >
-                        <a
-                            href="#"
-                            class="hover:text-blue-400 transition duration-300"
-                            >Контакты</a
-                        >
+                    <!-- Десктопное меню (по центру) -->
+                    <div
+                        class="hidden md:flex items-center space-x-6 absolute left-1/2 transform -translate-x-1/2"
+                    >
+                        <a href="#home" class="nav-link">Главная</a>
+                        <a href="#about" class="nav-link">Обо мне</a>
+                        <a href="#projects" class="nav-link">Проекты</a>
                     </div>
+
+                    <!-- Кнопка переключения темы -->
+                    <button
+                        id="theme-toggle"
+                        class="p-2 rounded-lg hover:bg-gray-700 transition duration-300 text-2xl"
+                        aria-label="Переключить тему"
+                    >
+                        <span class="theme-icon">🌙</span>
+                    </button>
 
                     <!-- Кнопка мобильного меню -->
                     <button
                         id="mobile-menu-button"
-                        class="md:hidden p-2 rounded-lg hover:bg-gray-700 transition duration-300"
+                        class="md:hidden p-2 rounded-lg hover:bg-gray-700 transition duration-300 ml-2"
+                        aria-label="Открыть меню"
                     >
                         <svg
                             class="w-6 h-6"
@@ -136,107 +65,81 @@
                     id="mobile-menu"
                     class="hidden md:hidden mt-4 space-y-3 pb-3"
                 >
-                    <a
-                        href="#"
-                        class="block py-2 px-4 rounded-lg hover:bg-gray-700 transition duration-300"
-                        >Главная</a
-                    >
-                    <a
-                        href="#"
-                        class="block py-2 px-4 rounded-lg hover:bg-gray-700 transition duration-300"
-                        >Обо мне</a
-                    >
-                    <a
-                        href="#"
-                        class="block py-2 px-4 rounded-lg hover:bg-gray-700 transition duration-300"
-                        >Проекты</a
-                    >
-                    <a
-                        href="#"
-                        class="block py-2 px-4 rounded-lg hover:bg-gray-700 transition duration-300"
-                        >Блог</a
-                    >
-                    <a
-                        href="#"
-                        class="block py-2 px-4 rounded-lg hover:bg-gray-700 transition duration-300"
-                        >Контакты</a
-                    >
+                    <a href="#home" class="mobile-nav-link">Главная</a>
+                    <a href="#about" class="mobile-nav-link">Обо мне</a>
+                    <a href="#projects" class="mobile-nav-link">Проекты</a>
                 </div>
             </nav>
         </header>
 
+        <!-- Отступ для фиксированной шапки -->
+        <div class="h-16"></div>
+
         <!-- Основной контент -->
-        <main class="container mx-auto flex justify-center mt-10">
-            <div class="w-full">
+        <main
+            id="about"
+            class="container mx-auto flex justify-center mt-10 px-4"
+        >
+            <div class="w-full max-w-6xl">
                 <!-- Заголовок терминала -->
-                <div class="terminal-header flex justify-between items-center">
+                <div class="terminal-header">
                     <div class="flex">
-                        <div class="terminal-button bg-[#f7768e]"></div>
-                        <div class="terminal-button bg-[#e0af68]"></div>
-                        <div class="terminal-button bg-[#9ece6a]"></div>
+                        <div class="terminal-button bg-red"></div>
+                        <div class="terminal-button bg-yellow"></div>
+                        <div class="terminal-button bg-green"></div>
                     </div>
-                    <div class="text-sm text-gray-400">filikr@portfolio:~</div>
+                    <div class="text-sm text-gray-400">filikr@info:~</div>
                     <div class="w-12"></div>
-                    <!-- Пустой элемент для баланса -->
                 </div>
 
                 <!-- Тело терминала -->
-                <div class="terminal-body p-6 border border-[#292e42]">
+                <div class="terminal-body">
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <!-- ASCII арт -->
+                        <!-- Фото -->
                         <div class="md:col-span-1 flex justify-center">
                             <img
-                                src="./img/photo.jpg"
-                                alt="photo"
-                                class="max-w-128 w-full aspect-square object-cover"
+                                id="profile-image"
+                                src="./img/photo-dark.jpg"
+                                alt="Фото профиля"
+                                class="max-w-full w-full aspect-square object-cover rounded-lg shadow-lg transition-opacity duration-300"
                             />
                         </div>
 
                         <!-- Информация -->
                         <div class="md:col-span-2 space-y-3">
-                            <div class="flex">
-                                <span class="label w-32 flex-shrink-0"
-                                    >Пользователь</span
-                                >
-                                <span class="separator mr-2">:</span>
+                            <div class="info-row">
+                                <span class="label">Пользователь</span>
+                                <span class="separator">:</span>
                                 <span class="value">FILIkR (Rodion)</span>
                             </div>
 
-                            <div class="flex">
-                                <span class="label w-32 flex-shrink-0"
-                                    >Специальность</span
-                                >
-                                <span class="separator mr-2">:</span>
+                            <div class="info-row">
+                                <span class="label">Специальность</span>
+                                <span class="separator">:</span>
                                 <span class="value">Backend developer</span>
                             </div>
 
-                            <div class="flex">
-                                <span class="label w-32 flex-shrink-0"
-                                    >Пол</span
-                                >
-                                <span class="separator mr-2">:</span>
+                            <div class="info-row">
+                                <span class="label">Пол</span>
+                                <span class="separator">:</span>
                                 <span class="value">Мужской</span>
                             </div>
 
-                            <div class="flex">
-                                <span class="label w-32 flex-shrink-0">ОС</span>
-                                <span class="separator mr-2">:</span>
+                            <div class="info-row">
+                                <span class="label">ОС</span>
+                                <span class="separator">:</span>
                                 <span class="value">WSL Linux</span>
                             </div>
 
-                            <div class="flex">
-                                <span class="label w-32 flex-shrink-0"
-                                    >Оболочка</span
-                                >
-                                <span class="separator mr-2">:</span>
+                            <div class="info-row">
+                                <span class="label">Оболочка</span>
+                                <span class="separator">:</span>
                                 <span class="value">zsh</span>
                             </div>
 
-                            <div class="flex">
-                                <span class="label w-32 flex-shrink-0"
-                                    >Редактор</span
-                                >
-                                <span class="separator mr-2">:</span>
+                            <div class="info-row">
+                                <span class="label">Редактор</span>
+                                <span class="separator">:</span>
                                 <span class="value">Zed</span>
                             </div>
 
@@ -288,7 +191,7 @@
                                 </div>
                             </div>
 
-                            <div class="mt-6 pt-4 border-t border-[#292e42]">
+                            <div class="mt-6 pt-4 border-t border-separator">
                                 <div class="flex items-center">
                                     <span class="accent mr-2">λ</span>
                                     <span class="value">Добро пожаловать!</span>
@@ -300,23 +203,50 @@
             </div>
         </main>
 
-        <script>
-            // JavaScript для мобильного меню
-            document
-                .getElementById("mobile-menu-button")
-                .addEventListener("click", function () {
-                    const mobileMenu = document.getElementById("mobile-menu");
-                    mobileMenu.classList.toggle("hidden");
-                });
+        <!-- Панель проектов -->
+        <section
+            id="projects"
+            class="container mx-auto flex justify-center mt-20 mb-20 px-4 gap-6 flex-col items-center"
+        >
+            <!-- Dock -->
 
-            // Закрытие меню при клике на ссылку (опционально)
-            document.querySelectorAll("#mobile-menu a").forEach((link) => {
-                link.addEventListener("click", function () {
-                    document
-                        .getElementById("mobile-menu")
-                        .classList.add("hidden");
-                });
-            });
-        </script>
+            <!-- Терминал -->
+            <div class="w-full max-w-3xl">
+                <div class="terminal-header">
+                    <div class="flex">
+                        <div class="terminal-button bg-red"></div>
+                        <div class="terminal-button bg-yellow"></div>
+                        <div class="terminal-button bg-green"></div>
+                    </div>
+                    <div class="text-sm text-gray-400">filikr@projects:~</div>
+                    <div class="w-12"></div>
+                </div>
+
+                <!-- Обертка для "виртуальных рабочих столов" -->
+                <div class="terminal-body relative overflow-hidden">
+                    <div
+                        id="workspace"
+                        class="workspace flex transition-transform duration-700 ease-in-out"
+                    ></div>
+
+                    <div id="dock" class="dock">
+                        <div class="app" data-project="project1">
+                            <img
+                                src="./img/projects/warden_guard_bot.jpg"
+                                alt="Warden Guard Bot"
+                            />
+                        </div>
+                        <div class="app" data-project="project2">
+                            <img
+                                src="./img/projects/reactive-canvas.png"
+                                alt="Reactive Canvas"
+                            />
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <script src="script.js"></script>
     </body>
 </html>

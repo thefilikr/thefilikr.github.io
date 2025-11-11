@@ -52,13 +52,13 @@ const CookieConsent: React.FC<{
                     onClick={accept}
                     className="bg-blue-500 hover:bg-blue-600 px-4 py-2 rounded text-sm"
                 >
-                    Принять
+                    Accept
                 </button>
                 <button
                     onClick={decline}
                     className="bg-gray-500 hover:bg-gray-600 px-4 py-2 rounded text-sm"
                 >
-                    Отказаться
+                    Refuse
                 </button>
             </div>
         </div>

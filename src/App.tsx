@@ -44,8 +44,8 @@ const CookieConsent: React.FC<{
     return (
         <div className="fixed bottom-4 left-1/2 transform -translate-x-1/2 bg-gray-900 text-white p-4 rounded-lg shadow-lg z-50 max-w-md text-center">
             <p className="mb-2 text-sm">
-                Этот сайт использует Google Analytics для улучшения работы
-                сайта. Вы можете принять использование аналитики или отказаться.
+                This website uses Google Analytics to improve its performance.
+                the site. You can accept the use of analytics or opt out.
             </p>
             <div className="flex justify-center gap-4 mt-2">
                 <button

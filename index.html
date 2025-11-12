@@ -56,6 +56,9 @@
             }
         </script>
         <script src="https://cdn.tailwindcss.com"></script>
+
+        <meta name="google-analytics-id" content="G-9HFKS8PCY3" />
+
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
         <link
@@ -847,6 +850,209 @@
                 >
             </div>
         </footer>
+
+        <div
+            id="cookie-consent"
+            class="hidden fixed inset-x-4 bottom-5 max-w-3xl mx-auto z-[2000] bg-[var(--header-bg)] text-[var(--text)] border border-[var(--border)] shadow-xl rounded-lg p-4 flex flex-col md:flex-row md:items-center gap-4"
+            role="dialog"
+            aria-labelledby="cookie-title"
+            aria-live="polite"
+            aria-modal="true"
+        >
+            <!-- Text -->
+            <div class="flex-1">
+                <h3 id="cookie-title" class="font-semibold text-sm">
+                    Analytics &amp; Privacy
+                </h3>
+                <p class="mt-1 text-sm leading-5 opacity-90">
+                    This website uses <strong>Google Analytics</strong> to
+                    collect anonymous usage data (page views and performance) to
+                    help improve the site. You can choose to accept or decline
+                    analytics tracking.
+                </p>
+            </div>
+
+            <!-- Actions -->
+            <div class="flex-shrink-0 flex items-center gap-2">
+                <button
+                    id="cookie-accept"
+                    class="px-3 py-2 rounded-md font-medium text-sm bg-[var(--btn-green)] hover:brightness-95 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--btn-green)]"
+                >
+                    Accept
+                </button>
+
+                <button
+                    id="cookie-decline"
+                    class="px-3 py-2 rounded-md font-medium text-sm border border-[var(--border)] bg-transparent hover:bg-[rgba(255,255,255,0.02)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--border)]"
+                >
+                    Decline
+                </button>
+
+                <button
+                    id="cookie-manage"
+                    class="px-2 py-1 rounded-md font-medium text-xs border border-dashed border-[var(--border)] bg-transparent hover:bg-[rgba(255,255,255,0.02)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[var(--border)]"
+                >
+                    Manage
+                </button>
+            </div>
+        </div>
+
+        <script>
+            /* Tailwind-based cookie consent logic.
+           - localStorage key: "ga_consent" = "granted" | "denied"
+           - load GA only when granted
+        */
+            (function () {
+                const CONSENT_KEY = "ga_consent";
+                const consentEl = document.getElementById("cookie-consent");
+                const acceptBtn = document.getElementById("cookie-accept");
+                const declineBtn = document.getElementById("cookie-decline");
+                const manageBtn = document.getElementById("cookie-manage");
+
+                function getGAMeasurementId() {
+                    const m = document.querySelector(
+                        'meta[name="google-analytics-id"]',
+                    );
+                    return m ? m.getAttribute("content") : null;
+                }
+
+                function showConsentBanner() {
+                    if (!consentEl) return;
+                    consentEl.classList.remove("hidden");
+                    // focus accept for keyboard users
+                    acceptBtn.focus();
+                    document.addEventListener("keydown", trapTab);
+                }
+
+                function hideConsentBanner() {
+                    if (!consentEl) return;
+                    consentEl.classList.add("hidden");
+                    document.removeEventListener("keydown", trapTab);
+                }
+
+                // Simple focus trap between three buttons
+                function trapTab(e) {
+                    if (e.key !== "Tab") return;
+                    const focusables = [acceptBtn, declineBtn, manageBtn];
+                    const first = focusables[0];
+                    const last = focusables[focusables.length - 1];
+                    if (e.shiftKey && document.activeElement === first) {
+                        e.preventDefault();
+                        last.focus();
+                    } else if (!e.shiftKey && document.activeElement === last) {
+                        e.preventDefault();
+                        first.focus();
+                    }
+                }
+
+                // Dynamically load GA4 script and init gtag
+                function loadGA(measurementId) {
+                    if (!measurementId) return;
+                    if (window.dataLayer) return; // already loaded
+                    const s = document.createElement("script");
+                    s.async = true;
+                    s.src = `https://www.googletagmanager.com/gtag/js?id=${measurementId}`;
+                    document.head.appendChild(s);
+
+                    window.dataLayer = window.dataLayer || [];
+                    function gtag() {
+                        window.dataLayer.push(arguments);
+                    }
+                    window.gtag = gtag;
+                    gtag("js", new Date());
+                    gtag("config", measurementId, { send_page_view: true });
+                }
+
+                // track custom event (only when consent granted)
+                function trackEvent(name, params = {}) {
+                    try {
+                        if (localStorage.getItem(CONSENT_KEY) !== "granted")
+                            return;
+                        if (typeof window.gtag === "function")
+                            window.gtag("event", name, params);
+                    } catch (e) {
+                        console.warn("trackEvent error", e);
+                    }
+                }
+
+                function acceptConsent() {
+                    localStorage.setItem(CONSENT_KEY, "granted");
+                    hideConsentBanner();
+                    const id = getGAMeasurementId();
+                    if (id) loadGA(id);
+                    setTimeout(
+                        () =>
+                            trackEvent("analytics_consent", {
+                                status: "granted",
+                            }),
+                        500,
+                    );
+                }
+
+                function declineConsent() {
+                    localStorage.setItem(CONSENT_KEY, "denied");
+                    hideConsentBanner();
+                }
+
+                function revokeConsent() {
+                    localStorage.removeItem(CONSENT_KEY);
+                    try {
+                        delete window.gtag;
+                        delete window.dataLayer;
+                    } catch (e) {}
+                    showConsentBanner();
+                }
+
+                function manageConsent() {
+                    const cur = localStorage.getItem(CONSENT_KEY);
+                    if (cur === "granted") {
+                        if (
+                            confirm(
+                                "You have accepted analytics. Revoke consent?",
+                            )
+                        )
+                            revokeConsent();
+                    } else if (cur === "denied") {
+                        if (
+                            confirm(
+                                "You have declined analytics. Allow analytics now?",
+                            )
+                        )
+                            acceptConsent();
+                    } else {
+                        // no decision yet
+                        acceptBtn.focus();
+                    }
+                }
+
+                // Init
+                (function init() {
+                    const consent = localStorage.getItem(CONSENT_KEY);
+                    const measurementId = getGAMeasurementId();
+
+                    if (consent === "granted") {
+                        if (measurementId) loadGA(measurementId);
+                        return;
+                    }
+                    if (consent === "denied") {
+                        return;
+                    }
+                    // no decision -> show banner after small delay
+                    window.addEventListener("load", () =>
+                        setTimeout(showConsentBanner, 600),
+                    );
+                })();
+
+                // Bind
+                acceptBtn.addEventListener("click", acceptConsent);
+                declineBtn.addEventListener("click", declineConsent);
+                manageBtn.addEventListener("click", manageConsent);
+
+                // Expose to global API
+                window.revokeAnalyticsConsent = revokeConsent;
+                window.trackEvent = trackEvent;
+            })();
+        </script>
 
         <script>
             // Theme Toggle

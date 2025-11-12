@@ -1,48 +1,184 @@
 <!doctype html>
-<html lang="ru">
+<html lang="en">
     <head>
-        <meta charset="UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title>FILIKR</title>
-        <link rel="stylesheet" href="sorce.css" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <title>Rodion FILIkR — Backend Developer (Golang, FastAPI)</title>
+        <meta
+            name="description"
+            content="Backend developer Rodion (FILIkR). Specializes in Golang, FastAPI, PostgreSQL and Docker. See projects and contact info."
+        />
+        <link rel="canonical" href="https://filikr.space/" />
+        <meta property="og:title" content="FILIkR — Backend Developer" />
+        <meta
+            property="og:description"
+            content="Rodion — Golang, FastAPI, PostgreSQL, Docker."
+        />
+        <!--<meta
+            property="og:image"
+            content="https://filikr.sapce/img/photo-dark.jpg"
+        />-->
+        <meta name="twitter:card" content="summary_large_image" />
+
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "Person",
+                "name": "Rodion (FILIkR)",
+                "givenName": "Rodion",
+                "alternateName": "FILIkR",
+                "url": "https://filikr.space/",
+                "sameAs": [
+                    "https://github.com/thefilikr",
+                    "https://linkedin.com/in/filikr",
+                    "https://t.me/the_filikr",
+                    "https://t.me/smeshkryg"
+                ],
+                "jobTitle": "Backend Developer",
+                "email": "mail@filikr.space",
+                "description": "Backend developer specializing in Golang, FastAPI, PostgreSQL, Docker and building production-ready backend systems."
+            }
+        </script>
+
+        <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "WebSite",
+                "url": "https://filikr.space/",
+                "name": "FILIkR — Rodion Portfolio",
+                "description": "Portfolio website of Rodion (FILIkR) — backend developer. Projects, contact info and technical stack.",
+                "potentialAction": {
+                    "@type": "SearchAction",
+                    "target": "https://filikr.space/?s={search_term_string}",
+                    "query-input": "required name=search_term_string"
+                }
+            }
+        </script>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&display=swap"
+            rel="stylesheet"
+        />
+        <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        fontFamily: {
+                            mono: ['"JetBrains Mono"', "monospace"],
+                        },
+                    },
+                },
+            };
+        </script>
+        <style>
+            html {
+                scroll-behavior: smooth;
+            }
+
+            body {
+                font-family: "JetBrains Mono", monospace;
+            }
+
+            /* Theme colors */
+            .dark-theme {
+                --bg: #1a1b26;
+                --header-bg: #16161e;
+                --text: #c0caf5;
+                --label: #7aa2f7;
+                --separator: #565f89;
+                --border: #292e42;
+                --hard-skill: #9ece6a;
+                --soft-skill: #bb9af7;
+                --accent: #f7768e;
+                --btn-red: #f7768e;
+                --btn-yellow: #e0af68;
+                --btn-green: #9ece6a;
+            }
+
+            .light-theme {
+                --bg: #ececec;
+                --header-bg: #f8f8f8;
+                --text: #2e3440;
+                --label: #4c566a;
+                --separator: #616e88;
+                --border: #c0c0c0;
+                --hard-skill: #5e81ac;
+                --soft-skill: #b48ead;
+                --accent: #bf616a;
+                --btn-red: #bf616a;
+                --btn-yellow: #ebcb8b;
+                --btn-green: #a3be8c;
+            }
+
+            body {
+                background-color: var(--bg);
+                color: var(--text);
+            }
+        </style>
     </head>
     <body id="home" class="dark-theme transition-colors duration-300">
-        <!-- Шапка с фиксированной позицией -->
+        <!-- Header -->
         <header
-            class="fixed top-0 left-0 right-0 bg-header shadow-lg z-50 transition-colors duration-300"
+            class="fixed top-0 left-0 right-0 z-50 shadow-lg transition-colors duration-300"
+            style="background-color: var(--header-bg)"
         >
             <nav class="container mx-auto px-4 py-3">
                 <div class="flex items-center justify-between">
-                    <!-- Логотип -->
+                    <!-- Logo -->
                     <div class="flex items-center space-x-2">
-                        <span class="text-xl font-bold text-primary"
+                        <span
+                            class="text-xl font-bold"
+                            style="color: var(--text)"
                             >FILIkR</span
                         >
                     </div>
 
-                    <!-- Десктопное меню (по центру) -->
+                    <!-- Desktop Menu -->
                     <div
                         class="hidden md:flex items-center space-x-6 absolute left-1/2 transform -translate-x-1/2"
                     >
-                        <a href="#home" class="nav-link">Главная</a>
-                        <a href="#about" class="nav-link">Обо мне</a>
-                        <a href="#projects" class="nav-link">Проекты</a>
+                        <a
+                            href="#home"
+                            class="transition-colors duration-300 hover:opacity-80"
+                            style="color: var(--text)"
+                            >Home</a
+                        >
+                        <a
+                            href="#about"
+                            class="transition-colors duration-300 hover:opacity-80"
+                            style="color: var(--text)"
+                            >About</a
+                        >
+                        <a
+                            href="#projects"
+                            class="transition-colors duration-300 hover:opacity-80"
+                            style="color: var(--text)"
+                            >Projects</a
+                        >
+                        <a
+                            href="#contacts"
+                            class="transition-colors duration-300 hover:opacity-80"
+                            style="color: var(--text)"
+                            >Contacts</a
+                        >
                     </div>
 
-                    <!-- Кнопка переключения темы -->
+                    <!-- Theme Toggle -->
                     <button
                         id="theme-toggle"
-                        class="p-2 rounded-lg hover:bg-gray-700 transition duration-300 text-2xl"
-                        aria-label="Переключить тему"
+                        class="p-2 rounded-lg hover:bg-gray-700 hover:bg-opacity-30 transition duration-300 text-2xl"
+                        aria-label="Toggle theme"
                     >
-                        <span class="theme-icon">🌙</span>
+                        <span id="theme-icon">🌙</span>
                     </button>
 
-                    <!-- Кнопка мобильного меню -->
+                    <!-- Mobile Menu Button -->
                     <button
                         id="mobile-menu-button"
-                        class="md:hidden p-2 rounded-lg hover:bg-gray-700 transition duration-300 ml-2"
-                        aria-label="Открыть меню"
+                        class="md:hidden p-2 rounded-lg hover:bg-gray-700 hover:bg-opacity-30 transition duration-300 ml-2"
+                        aria-label="Open menu"
                     >
                         <svg
                             class="w-6 h-6"
@@ -60,141 +196,263 @@
                     </button>
                 </div>
 
-                <!-- Мобильное меню -->
+                <!-- Mobile Menu -->
                 <div
                     id="mobile-menu"
                     class="hidden md:hidden mt-4 space-y-3 pb-3"
                 >
-                    <a href="#home" class="mobile-nav-link">Главная</a>
-                    <a href="#about" class="mobile-nav-link">Обо мне</a>
-                    <a href="#projects" class="mobile-nav-link">Проекты</a>
+                    <a
+                        href="#home"
+                        class="block px-4 py-2 rounded-lg transition-colors duration-300 hover:bg-gray-700 hover:bg-opacity-20"
+                        style="color: var(--text)"
+                        >Home</a
+                    >
+                    <a
+                        href="#about"
+                        class="block px-4 py-2 rounded-lg transition-colors duration-300 hover:bg-gray-700 hover:bg-opacity-20"
+                        style="color: var(--text)"
+                        >About</a
+                    >
+                    <a
+                        href="#projects"
+                        class="block px-4 py-2 rounded-lg transition-colors duration-300 hover:bg-gray-700 hover:bg-opacity-20"
+                        style="color: var(--text)"
+                        >Projects</a
+                    >
                 </div>
             </nav>
         </header>
 
-        <!-- Отступ для фиксированной шапки -->
+        <!-- Spacer for fixed header -->
         <div class="h-16"></div>
 
-        <!-- Основной контент -->
-        <main
-            id="about"
-            class="container mx-auto flex justify-center mt-10 px-4"
-        >
-            <div class="w-full max-w-6xl">
-                <!-- Заголовок терминала -->
-                <div class="terminal-header">
-                    <div class="flex">
-                        <div class="terminal-button bg-red"></div>
-                        <div class="terminal-button bg-yellow"></div>
-                        <div class="terminal-button bg-green"></div>
+        <!-- About Section -->
+        <main id="about" class="container mx-auto mt-10 px-4">
+            <div class="max-w-6xl mx-auto">
+                <!-- Terminal Header -->
+                <div
+                    class="flex justify-between items-center px-4 py-2 rounded-t-lg"
+                    style="background-color: var(--header-bg)"
+                >
+                    <div class="flex space-x-2">
+                        <div
+                            class="w-3 h-3 rounded-full"
+                            style="background-color: var(--btn-red)"
+                        ></div>
+                        <div
+                            class="w-3 h-3 rounded-full"
+                            style="background-color: var(--btn-yellow)"
+                        ></div>
+                        <div
+                            class="w-3 h-3 rounded-full"
+                            style="background-color: var(--btn-green)"
+                        ></div>
                     </div>
-                    <div class="text-sm text-gray-400">filikr@info:~</div>
+                    <div class="text-sm opacity-60">filikr@info:~</div>
                     <div class="w-12"></div>
                 </div>
 
-                <!-- Тело терминала -->
-                <div class="terminal-body">
+                <!-- Terminal Body -->
+                <div
+                    class="p-6 rounded-b-lg shadow-xl border"
+                    style="
+                        background-color: var(--bg);
+                        border-color: var(--border);
+                    "
+                >
                     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-                        <!-- Фото -->
+                        <!-- Photo -->
                         <div class="md:col-span-1 flex justify-center">
                             <img
                                 id="profile-image"
                                 src="./img/photo-dark.jpg"
-                                alt="Фото профиля"
-                                class="max-w-full w-full aspect-square object-cover rounded-lg shadow-lg transition-opacity duration-300"
+                                alt="Profile photo"
+                                class="w-full aspect-square object-cover rounded-lg shadow-lg transition-opacity duration-300"
                             />
                         </div>
 
-                        <!-- Информация -->
+                        <!-- Info -->
                         <div class="md:col-span-2 space-y-3">
-                            <div class="info-row">
-                                <span class="label">Пользователь</span>
-                                <span class="separator">:</span>
-                                <span class="value">FILIkR (Rodion)</span>
+                            <div class="flex">
+                                <span
+                                    class="w-32 font-semibold flex-shrink-0"
+                                    style="color: var(--label)"
+                                    >User</span
+                                >
+                                <span
+                                    class="mr-2"
+                                    style="color: var(--separator)"
+                                    >:</span
+                                >
+                                <span style="color: var(--text)"
+                                    >FILIkR (Rodion)</span
+                                >
                             </div>
 
-                            <div class="info-row">
-                                <span class="label">Специальность</span>
-                                <span class="separator">:</span>
-                                <span class="value">Backend developer</span>
+                            <div class="flex">
+                                <span
+                                    class="w-32 font-semibold flex-shrink-0"
+                                    style="color: var(--label)"
+                                    >Specialty</span
+                                >
+                                <span
+                                    class="mr-2"
+                                    style="color: var(--separator)"
+                                    >:</span
+                                >
+                                <span style="color: var(--text)"
+                                    >Backend developer</span
+                                >
                             </div>
 
-                            <div class="info-row">
-                                <span class="label">Пол</span>
-                                <span class="separator">:</span>
-                                <span class="value">Мужской</span>
+                            <div class="flex">
+                                <span
+                                    class="w-32 font-semibold flex-shrink-0"
+                                    style="color: var(--label)"
+                                    >Gender</span
+                                >
+                                <span
+                                    class="mr-2"
+                                    style="color: var(--separator)"
+                                    >:</span
+                                >
+                                <span style="color: var(--text)">Male</span>
                             </div>
 
-                            <div class="info-row">
-                                <span class="label">ОС</span>
-                                <span class="separator">:</span>
-                                <span class="value">WSL Linux</span>
+                            <div class="flex">
+                                <span
+                                    class="w-32 font-semibold flex-shrink-0"
+                                    style="color: var(--label)"
+                                    >OS</span
+                                >
+                                <span
+                                    class="mr-2"
+                                    style="color: var(--separator)"
+                                    >:</span
+                                >
+                                <span style="color: var(--text)"
+                                    >WSL Linux</span
+                                >
                             </div>
 
-                            <div class="info-row">
-                                <span class="label">Оболочка</span>
-                                <span class="separator">:</span>
-                                <span class="value">zsh</span>
+                            <div class="flex">
+                                <span
+                                    class="w-32 font-semibold flex-shrink-0"
+                                    style="color: var(--label)"
+                                    >Shell</span
+                                >
+                                <span
+                                    class="mr-2"
+                                    style="color: var(--separator)"
+                                    >:</span
+                                >
+                                <span style="color: var(--text)">zsh</span>
                             </div>
 
-                            <div class="info-row">
-                                <span class="label">Редактор</span>
-                                <span class="separator">:</span>
-                                <span class="value">Zed</span>
+                            <div class="flex">
+                                <span
+                                    class="w-32 font-semibold flex-shrink-0"
+                                    style="color: var(--label)"
+                                    >Editor</span
+                                >
+                                <span
+                                    class="mr-2"
+                                    style="color: var(--separator)"
+                                    >:</span
+                                >
+                                <span style="color: var(--text)">Zed</span>
                             </div>
 
+                            <!-- Hard Skills -->
                             <div class="mt-4">
                                 <div class="flex mb-2">
-                                    <span class="label w-32 flex-shrink-0"
-                                        >Хард-скиллы</span
+                                    <span
+                                        class="w-32 font-semibold flex-shrink-0"
+                                        style="color: var(--label)"
+                                        >Hard Skills</span
                                     >
-                                    <span class="separator mr-2">:</span>
+                                    <span
+                                        class="mr-2"
+                                        style="color: var(--separator)"
+                                        >:</span
+                                    >
                                 </div>
                                 <div
                                     class="grid grid-cols-1 md:grid-cols-2 gap-2 ml-36"
                                 >
-                                    <span class="hard-skill">Golang</span>
-                                    <span class="hard-skill"
-                                        >Python|FastAPI</span
+                                    <span style="color: var(--hard-skill)"
+                                        >Golang</span
                                     >
-                                    <span class="hard-skill">PostgreSQL</span>
-                                    <span class="hard-skill">Docker</span>
-                                    <span class="hard-skill">Git</span>
-                                    <span class="hard-skill">TelegramAPI</span>
+                                    <span style="color: var(--hard-skill)"
+                                        >Python | FastAPI</span
+                                    >
+                                    <span style="color: var(--hard-skill)"
+                                        >PostgreSQL</span
+                                    >
+                                    <span style="color: var(--hard-skill)"
+                                        >Docker</span
+                                    >
+                                    <span style="color: var(--hard-skill)"
+                                        >Git</span
+                                    >
+                                    <span style="color: var(--hard-skill)"
+                                        >Telegram API</span
+                                    >
                                 </div>
                             </div>
 
+                            <!-- Soft Skills -->
                             <div class="mt-4">
                                 <div class="flex mb-2">
-                                    <span class="label w-32 flex-shrink-0"
-                                        >Софт-скиллы</span
+                                    <span
+                                        class="w-32 font-semibold flex-shrink-0"
+                                        style="color: var(--label)"
+                                        >Soft Skills</span
                                     >
-                                    <span class="separator mr-2">:</span>
+                                    <span
+                                        class="mr-2"
+                                        style="color: var(--separator)"
+                                        >:</span
+                                    >
                                 </div>
                                 <div
                                     class="grid grid-cols-1 md:grid-cols-2 gap-2 ml-36"
                                 >
-                                    <span class="soft-skill">Коммуникация</span>
-                                    <span class="soft-skill"
-                                        >Решение проблем</span
+                                    <span style="color: var(--soft-skill)"
+                                        >Communication</span
                                     >
-                                    <span class="soft-skill"
-                                        >Тайм-менеджмент</span
+                                    <span style="color: var(--soft-skill)"
+                                        >Problem Solving</span
                                     >
-                                    <span class="soft-skill"
-                                        >Работа в команде</span
+                                    <span style="color: var(--soft-skill)"
+                                        >Time Management</span
                                     >
-                                    <span class="soft-skill"
-                                        >Критическое мышление</span
+                                    <span style="color: var(--soft-skill)"
+                                        >Teamwork</span
                                     >
-                                    <span class="soft-skill">Адаптивность</span>
+                                    <span style="color: var(--soft-skill)"
+                                        >Critical Thinking</span
+                                    >
+                                    <span style="color: var(--soft-skill)"
+                                        >Adaptability</span
+                                    >
                                 </div>
                             </div>
 
-                            <div class="mt-6 pt-4 border-t border-separator">
+                            <!-- Welcome Message -->
+                            <div
+                                class="mt-6 pt-4 border-t"
+                                style="border-color: var(--border)"
+                            >
                                 <div class="flex items-center">
-                                    <span class="accent mr-2">λ</span>
-                                    <span class="value">Добро пожаловать!</span>
+                                    <span
+                                        class="mr-2"
+                                        style="color: var(--accent)"
+                                        >λ</span
+                                    >
+                                    <span style="color: var(--text)"
+                                        >Welcome!</span
+                                    >
                                 </div>
                             </div>
                         </div>
@@ -203,50 +461,429 @@
             </div>
         </main>
 
-        <!-- Панель проектов -->
-        <section
-            id="projects"
-            class="container mx-auto flex justify-center mt-20 mb-20 px-4 gap-6 flex-col items-center"
-        >
-            <!-- Dock -->
+        <!-- Projects Section -->
+        <section id="projects" class="container mx-auto mt-20 mb-20 px-4">
+            <div class="max-w-6xl mx-auto">
+                <h2
+                    class="text-3xl font-bold mb-8 text-center"
+                    style="color: var(--label)"
+                >
+                    Projects
+                </h2>
 
-            <!-- Терминал -->
-            <div class="w-full max-w-3xl">
-                <div class="terminal-header">
-                    <div class="flex">
-                        <div class="terminal-button bg-red"></div>
-                        <div class="terminal-button bg-yellow"></div>
-                        <div class="terminal-button bg-green"></div>
-                    </div>
-                    <div class="text-sm text-gray-400">filikr@projects:~</div>
-                    <div class="w-12"></div>
-                </div>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                    <!-- Project 1 -->
+                    <div class="flex flex-col">
+                        <!-- Terminal Header -->
+                        <div
+                            class="flex justify-between items-center px-4 py-2 rounded-t-lg"
+                            style="background-color: var(--header-bg)"
+                        >
+                            <div class="flex space-x-2">
+                                <div
+                                    class="w-3 h-3 rounded-full"
+                                    style="background-color: var(--btn-red)"
+                                ></div>
+                                <div
+                                    class="w-3 h-3 rounded-full"
+                                    style="background-color: var(--btn-yellow)"
+                                ></div>
+                                <div
+                                    class="w-3 h-3 rounded-full"
+                                    style="background-color: var(--btn-green)"
+                                ></div>
+                            </div>
+                            <div class="text-sm opacity-60">project-1</div>
+                            <div class="w-12"></div>
+                        </div>
 
-                <!-- Обертка для "виртуальных рабочих столов" -->
-                <div class="terminal-body relative overflow-hidden">
-                    <div
-                        id="workspace"
-                        class="workspace flex transition-transform duration-700 ease-in-out"
-                    ></div>
-
-                    <div id="dock" class="dock">
-                        <div class="app" data-project="project1">
+                        <!-- Terminal Body -->
+                        <div
+                            class="p-6 rounded-b-lg shadow-xl border flex-grow"
+                            style="
+                                background-color: var(--bg);
+                                border-color: var(--border);
+                            "
+                        >
                             <img
                                 src="./img/projects/warden_guard_bot.jpg"
                                 alt="Warden Guard Bot"
+                                class="w-full h-48 object-cover rounded-lg mb-4"
                             />
+
+                            <h3
+                                class="text-xl font-semibold mb-2"
+                                style="color: var(--accent)"
+                            >
+                                Warden Guard Bot
+                            </h3>
+
+                            <div class="flex mb-3">
+                                <span
+                                    class="font-semibold mr-2"
+                                    style="color: var(--label)"
+                                    >Status:</span
+                                >
+                                <span
+                                    class="text-sm"
+                                    style="color: var(--hard-skill)"
+                                    >In progress</span
+                                >
+                            </div>
+
+                            <p
+                                class="text-sm mb-4 opacity-90"
+                                style="color: var(--text)"
+                            >
+                                Telegram bot for community moderation with
+                                advanced anti-spam features and automation
+                                tools.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span
+                                    class="px-2 py-1 rounded text-xs"
+                                    style="
+                                        background-color: var(--border);
+                                        color: var(--text);
+                                    "
+                                    >Golang</span
+                                >
+                                <span
+                                    class="px-2 py-1 rounded text-xs"
+                                    style="
+                                        background-color: var(--border);
+                                        color: var(--text);
+                                    "
+                                    >Telegram API</span
+                                >
+                                <span
+                                    class="px-2 py-1 rounded text-xs"
+                                    style="
+                                        background-color: var(--border);
+                                        color: var(--text);
+                                    "
+                                    >PostgreSQL</span
+                                >
+                            </div>
+
+                            <a
+                                href="t.me/ward_guard_bot"
+                                class="inline-block text-sm hover:underline"
+                                style="color: var(--hard-skill)"
+                            >
+                                More →
+                            </a>
                         </div>
-                        <div class="app" data-project="project2">
+                    </div>
+
+                    <!-- Project 2 -->
+                    <div class="flex flex-col">
+                        <!-- Terminal Header -->
+                        <div
+                            class="flex justify-between items-center px-4 py-2 rounded-t-lg"
+                            style="background-color: var(--header-bg)"
+                        >
+                            <div class="flex space-x-2">
+                                <div
+                                    class="w-3 h-3 rounded-full"
+                                    style="background-color: var(--btn-red)"
+                                ></div>
+                                <div
+                                    class="w-3 h-3 rounded-full"
+                                    style="background-color: var(--btn-yellow)"
+                                ></div>
+                                <div
+                                    class="w-3 h-3 rounded-full"
+                                    style="background-color: var(--btn-green)"
+                                ></div>
+                            </div>
+                            <div class="text-sm opacity-60">project-2</div>
+                            <div class="w-12"></div>
+                        </div>
+
+                        <!-- Terminal Body -->
+                        <div
+                            class="p-6 rounded-b-lg shadow-xl border flex-grow"
+                            style="
+                                background-color: var(--bg);
+                                border-color: var(--border);
+                            "
+                        >
                             <img
                                 src="./img/projects/reactive-canvas.png"
                                 alt="Reactive Canvas"
+                                class="w-full h-48 object-cover rounded-lg mb-4"
                             />
+
+                            <h3
+                                class="text-xl font-semibold mb-2"
+                                style="color: var(--accent)"
+                            >
+                                Reactive Canvas
+                            </h3>
+
+                            <div class="flex mb-3">
+                                <span
+                                    class="font-semibold mr-2"
+                                    style="color: var(--label)"
+                                    >Status:</span
+                                >
+                                <span
+                                    class="text-sm"
+                                    style="color: var(--hard-skill)"
+                                    >Stopped</span
+                                >
+                            </div>
+
+                            <p
+                                class="text-sm mb-4 opacity-90"
+                                style="color: var(--text)"
+                            >
+                                Interactive web app for creating graphics in
+                                real time using the Canvas API.
+                            </p>
+
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span
+                                    class="px-2 py-1 rounded text-xs"
+                                    style="
+                                        background-color: var(--border);
+                                        color: var(--text);
+                                    "
+                                    >JavaScript|TypeScript</span
+                                >
+                                <span
+                                    class="px-2 py-1 rounded text-xs"
+                                    style="
+                                        background-color: var(--border);
+                                        color: var(--text);
+                                    "
+                                    >Canvas</span
+                                >
+                                <span
+                                    class="px-2 py-1 rounded text-xs"
+                                    style="
+                                        background-color: var(--border);
+                                        color: var(--text);
+                                    "
+                                    >ECS</span
+                                >
+                            </div>
+
+                            <a
+                                href=""
+                                class="inline-block text-sm hover:underline"
+                                style="color: var(--hard-skill)"
+                            >
+                                More →
+                            </a>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
 
-        <script src="script.js"></script>
+        <!-- Contacts Section -->
+        <section id="contacts" class="container mx-auto mt-20 mb-20 px-4">
+            <div class="max-w-6xl mx-auto">
+                <h2
+                    class="text-3xl font-bold mb-8 text-center"
+                    style="color: var(--label)"
+                >
+                    Contact
+                </h2>
+
+                <!-- Terminal Header -->
+                <div
+                    class="flex justify-between items-center px-4 py-2 rounded-t-lg"
+                    style="background-color: var(--header-bg)"
+                >
+                    <div class="flex space-x-2">
+                        <div
+                            class="w-3 h-3 rounded-full"
+                            style="background-color: var(--btn-red)"
+                        ></div>
+                        <div
+                            class="w-3 h-3 rounded-full"
+                            style="background-color: var(--btn-yellow)"
+                        ></div>
+                        <div
+                            class="w-3 h-3 rounded-full"
+                            style="background-color: var(--btn-green)"
+                        ></div>
+                    </div>
+                    <div class="text-sm opacity-60">filikr@contacts:~</div>
+                    <div class="w-12"></div>
+                </div>
+
+                <!-- Terminal Body -->
+                <div
+                    class="p-6 rounded-b-lg shadow-xl border"
+                    style="
+                        background-color: var(--bg);
+                        border-color: var(--border);
+                    "
+                >
+                    <div class="space-y-4">
+                        <!-- GitHub -->
+                        <div class="flex items-center space-x-3">
+                            <span
+                                class="font-semibold w-48"
+                                style="color: var(--label)"
+                                >GitHub</span
+                            >
+                            <span class="mr-2" style="color: var(--separator)"
+                                >:</span
+                            >
+                            <a
+                                href="https://github.com/thefilikr"
+                                target="_blank"
+                                class="hover:underline"
+                                style="color: var(--hard-skill)"
+                            >
+                                github.com/thefilikr
+                            </a>
+                        </div>
+
+                        <!-- Telegram Channels -->
+                        <div class="flex items-center space-x-3">
+                            <span
+                                class="font-semibold w-48"
+                                style="color: var(--label)"
+                                >Telegram my channel</span
+                            >
+                            <span class="mr-2" style="color: var(--separator)"
+                                >:</span
+                            >
+                            <a
+                                href="https://t.me/the_filikr"
+                                target="_blank"
+                                class="hover:underline"
+                                style="color: var(--soft-skill)"
+                            >
+                                @the_filikr
+                            </a>
+                        </div>
+
+                        <div class="flex items-center space-x-3">
+                            <span
+                                class="font-semibold w-48"
+                                style="color: var(--label)"
+                                >Telegram hobby</span
+                            >
+                            <span class="mr-2" style="color: var(--separator)"
+                                >:</span
+                            >
+                            <a
+                                href="https://t.me/smeshkryg"
+                                target="_blank"
+                                class="hover:underline"
+                                style="color: var(--soft-skill)"
+                            >
+                                @smeshkryg
+                            </a>
+                        </div>
+
+                        <!-- Email -->
+                        <div class="flex items-center space-x-3">
+                            <span
+                                class="font-semibold w-48"
+                                style="color: var(--label)"
+                                >Email</span
+                            >
+                            <span class="mr-2" style="color: var(--separator)"
+                                >:</span
+                            >
+                            <a
+                                href="mail@filikr.space"
+                                class="hover:underline"
+                                style="color: var(--accent)"
+                            >
+                                mail@filikr.space
+                            </a>
+                        </div>
+
+                        <!-- LinkedIn -->
+                        <div class="flex items-center space-x-3">
+                            <span
+                                class="font-semibold w-48"
+                                style="color: var(--label)"
+                                >LinkedIn</span
+                            >
+                            <span class="mr-2" style="color: var(--separator)"
+                                >:</span
+                            >
+                            <a
+                                href="https://linkedin.com/in/filikr"
+                                target="_blank"
+                                class="hover:underline"
+                                style="color: var(--hard-skill)"
+                            >
+                                linkedin.com/in/filikr
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer
+            class="border-t mt-10 py-6 text-center text-sm transition-colors duration-300"
+            style="
+                border-color: var(--border);
+                background-color: var(--header-bg);
+                color: var(--text);
+            "
+        >
+            <div class="flex flex-col items-center space-y-2">
+                <span>© 2025 FILIkR. All rights reserved.</span>
+                <span class="opacity-70"
+                    >Made with
+                    <span style="color: var(--accent)">❤</span> using
+                    TailwindCSS</span
+                >
+            </div>
+        </footer>
+
+        <script>
+            // Theme Toggle
+            const themeToggle = document.getElementById("theme-toggle");
+            const themeIcon = document.getElementById("theme-icon");
+            const body = document.body;
+            const profileImage = document.getElementById("profile-image");
+
+            themeToggle.addEventListener("click", () => {
+                if (body.classList.contains("dark-theme")) {
+                    body.classList.remove("dark-theme");
+                    body.classList.add("light-theme");
+                    themeIcon.textContent = "☀️";
+                    profileImage.src = "./img/photo-light.jpg";
+                } else {
+                    body.classList.remove("light-theme");
+                    body.classList.add("dark-theme");
+                    themeIcon.textContent = "🌙";
+                    profileImage.src = "./img/photo-dark.jpg";
+                }
+            });
+
+            // Mobile Menu Toggle
+            const mobileMenuButton =
+                document.getElementById("mobile-menu-button");
+            const mobileMenu = document.getElementById("mobile-menu");
+
+            mobileMenuButton.addEventListener("click", () => {
+                mobileMenu.classList.toggle("hidden");
+            });
+
+            // Close mobile menu on link click
+            const mobileLinks = mobileMenu.querySelectorAll("a");
+            mobileLinks.forEach((link) => {
+                link.addEventListener("click", () => {
+                    mobileMenu.classList.add("hidden");
+                });
+            });
+        </script>
     </body>
 </html>
